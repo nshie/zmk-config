@@ -1,0 +1,14 @@
+file_format: "1"
+id: copypaste
+name: CopyPaste
+type: shield
+url: https://github.com/phloamy/zmk-config/boards/shields/copypaste
+requires: [nice!nanov2]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - encoder
+siblings:
+  - copypaste_left
+  - copypaste_right
