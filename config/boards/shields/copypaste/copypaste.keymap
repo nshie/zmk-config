@@ -3,24 +3,61 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
+#define DEFAULT 0
+#define SYM     1
+#define NAV     2
+#define GAME    3
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-// --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// | BTCLEAR |    Q    |    W    |    E    |    R    |    T    |                        |    Y    |    U    |    I    |    O    |    P    |    \    |
-// | PRFRUSB |    A    |    S    |    D    |    F    |    G    |                        |    H    |    J    |    K    |    L    |    ;    |    '    |
-// | PRFRBLE |    Z    |    X    |    C    |    V    |    B    |                        |    N    |    M    |    ,    |    .    |    /    | R SHIFT |
-//                               |   GUI   |   DEL   |  BKSPC  |  LCTRL  |    | RETURN  |  SPACE  |  RCTRL  |  R ALT  |
+// --------------------------------------------------------------------------------------------------------------------------------------------------
+// |   TAB   |    Q    |    W    |    E    |    R    |    T    |                        |    Y    |    U    |    I    |    O    |    P    |    -    |
+// |   ESC   |    A    |    S    |    D    |    F    |    G    |                        |    H    |    J    |    K    |    L    |    ;    |    '    |
+// |  SHIFT  |    Z    |    X    |    C    |    V    |    B    |                        |    N    |    M    |    ,    |    .    |    /    | R SHIFT |
+//                               |  L ALT  | LT(SYM) |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R GUI  |
             bindings = <
-     &bt BT_CLR    &kp Q    &kp W    &kp E     &kp R     &kp T                              &kp Y     &kp U     &kp I     &kp O     &kp P    &kp BSLH
-    &out OUT_USB   &kp A    &kp S    &kp D     &kp F     &kp G                              &kp H     &kp J     &kp K     &kp L     &kp SEMI &kp SQT
-    &out OUT_BLE   &kp Z    &kp X    &kp C     &kp V     &kp B                              &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH &kp RSHIFT
-                                &kp LGUI  &kp DEL   &kp BSPC   &kp LCTRL     &kp RET   &kp SPACE &kp RCTRL &kp RALT
+    &kp TAB     &kp Q     &kp W     &kp E     &kp R     &kp T                              &kp Y     &kp U     &kp I     &kp O     &kp P     &kp MINUS
+    &kp ESC     &kp A     &kp S     &kp D     &kp F     &kp G                              &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
+    &KP LSHIFT  &kp Z     &kp X     &kp C     &kp V     &kp B                              &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHIFT
+                                    &kp LALT  &tog SYM  &kp BSPC  &mo NAV       &kp RET    &kp SPACE &kp RSHFT &kp RALT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
         };
-    };
+
+        symbol_layer {
+// --------------------------------------------------------------------------------------------------------------------------------------------------
+// |   TAB   |    `    |    !    |    {    |    }    |    $    |                        |    &    |    (    |    )    |    +    |    =    |    |    |
+// |   ESC   |    1    |    2    |    3    |    4    |    5    |                        |    6    |    7    |    8    |    9    |    0    |    \    |
+// |  SHIFT  |    @    |    %    |    *    |    ?    |    ^    |                        |    #    |    <    |    >    |    [    |    ]    | R SHIFT |
+//                               |  L ALT  |   DEL   |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R ALT  |
+            bindings = <
+    &trans      &kp GRAVE &kp EXCL  &kp LBRC  &kp RBRC  &kp DLLR                           &kp AMPS  &kp LPAR  &kp RPAR  &kp PLUS  &kp EQUAL &kp PIPE
+    &trans      &kp N1    &kp N2    &kp N3    &kp N4    &kp N5                             &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp BSLH
+    &trans      &kp AT    &kp PRCNT &kp STAR  &kp QMARK &kp CARET                          &kp HASH  &kp LT    &kp GT    &kp LBKT  &kp RBKT  &trans
+                                    &trans    &trans    &trans    &trans        &trans     &trans    &trans    &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+        };
+
+        nav_layer {
+// --------------------------------------------------------------------------------------------------------------------------------------------------
+// |   TAB   |  PUGUP  |  HOME   |   UP    |   END   |   DEL   |                        |   INS   |         |         |         |         |  BTCLR  |
+// |   ESC   |  PGDWN  |  LEFT   |  DOWN   |  RIGHT  |PLAYPAUSE|                        |         |  VOLUP  |  VOLDN  |  MUTE   |         |         |
+// |  SHIFT  | BTSEL 0 | BTSEL 1 | BTSEL 2 | BTSEL 3 | BTSEL 4 |                        |         |  BTPRV  |  BTNXT  | OUT_USB | OUT_BLE | R SHIFT |
+//                               |  L ALT  |   DEL   |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R ALT  |
+            bindings = <
+    &trans      &kp PG_UP &kp HOME  &kp UP    &kp END   &kp DEL                            &kp INS   &none        &none        &none        &none        &bt BT_CLR
+    &trans      &kp PG_DN &kp LEFT  &kp DOWN  &kp RIGHT &kp C_PP                           &none     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &none        &none
+    &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                &none     &bt BT_PRV   &bt BT_NXT   &out OUT_USB &out OUT_BLE &trans
+                                    &trans    &trans    &trans    &trans        &trans     &trans    &trans    &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+        };
+    };    
 };
