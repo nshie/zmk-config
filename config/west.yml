@@ -4,10 +4,12 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: phloamy
       url-base: https://github.com/phloamy
+    - name: steno
+      url-base: https://github.com/dnaq
   projects:
     - name: zmk
-      remote: phloamy
-      revision: main
+      remote: steno
+      revision: plover-hid-hog-attempt
       import: app/west.yml
   self:
     path: config
