@@ -6,7 +6,7 @@
 #define DEFAULT 0
 #define SYM     1
 #define NAV     2
-#define GAME    3
+#define STENO   3
 
 #define AC(keycode) &ac LC(keycode) keycode    // hold key for ctrl + key macro
 
@@ -70,6 +70,22 @@
     &trans      &kp PG_DN &kp LEFT  &kp DOWN  &kp RIGHT &kp C_PP                           &none     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &none        &none
     &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                &none     &bt BT_PRV   &bt BT_NXT   &out OUT_USB &out OUT_BLE &trans
                                     &trans    &trans    &trans    &trans        &trans     &trans    &trans    &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        steno {
+// --------------------------------------------------------------------------------------------------------------------------------------------------
+// |         |    S    |    T    |    P    |    H    |    *    |                        |    *    |    F    |    P    |    L    |    T    |    D    |
+// |         |    S    |    K    |    W    |    R    |    *    |                        |    *    |    R    |    B    |    G    |    S    |    Z    |
+// |         |         |         |         |         |         |                        |         |         |         |         |         |         |
+//                               |         |    A    |    O    |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R ALT  |
+            bindings = <
+    &none     &kp PLV_SL &kp PLV_TL &kp PLV_PL &kp PLV_HL &kp PLV_ST                       &kp PLV_ST &kp PLV_FR &kp PLV_PR &kp PLV_LR &kp PLV_TR &kp PLV_DR
+    &kp ESC   &kp PLV_SL &kp PLV_KL &kp PLV_WL &kp PLV_RL &kp PLV_ST                       &kp PLV_ST &kp PLV_RR &kp PLV_BR &kp PLV_GR &kp PLV_SR &kp PLV_ZR
+   &tog STENO &none      &none      &none      &none      &none                            &none      &none      &none      &none      &none      &none 
+                                    &none   &kp PLV_NM &kp PLV_A &kp PLV_O      &kp PLV_E &kp PLV_U &kp PLV_NM &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
