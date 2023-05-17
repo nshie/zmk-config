@@ -8,7 +8,22 @@
 #define NAV     2
 #define GAME    3
 
+#define AC(keycode) &ac LC(keycode) keycode    // hold key for ctrl + key macro
+
 / {
+    behaviors {
+        ac: auto_control {  
+            compatible = "zmk,behavior-hold-tap";
+            label = "AUTO_CONTROL";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <600>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -19,13 +34,13 @@
 // |  SHIFT  |    Z    |    X    |    C    |    V    |    B    |                        |    N    |    M    |    ,    |    .    |    /    | R SHIFT |
 //                               |  L ALT  | LT(SYM) |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R GUI  |
             bindings = <
-    &kp TAB     &kp Q     &kp W     &kp E     &kp R     &kp T                              &kp Y     &kp U     &kp I     &kp O     &kp P     &kp MINUS
-    &kp ESC     &kp A     &kp S     &kp D     &kp F     &kp G                              &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
-    &KP LSHIFT  &kp Z     &kp X     &kp C     &kp V     &kp B                              &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHIFT
-                                    &kp LALT  &tog SYM  &kp BSPC  &mo NAV       &kp RET    &kp SPACE &kp RSHFT &kp RALT
+    AC(TAB)     AC(Q)     AC(W)     AC(E)     AC(R)     AC(T)                              AC(Y)     AC(U)     AC(I)     AC(O)     AC(P)     AC(MINUS)
+    AC(ESC)     AC(A)     AC(S)     AC(D)     AC(F)     AC(G)                              AC(H)     AC(J)     AC(K)     AC(L)     AC(SEMI)  AC(SQT)
+    &kp LSHIFT  AC(Z)     AC(X)     AC(C)     AC(V)     AC(B)                              AC(N)     AC(M)     AC(COMMA) AC(DOT)   AC(FSLH)  &kp RSHIFT
+                                    &kp LALT  &tog SYM  &kp BSPC &mo NAV        &kp RET    AC(SPACE) &kp RSHFT &kp RALT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         symbol_layer {
@@ -41,7 +56,7 @@
                                     &trans    &trans    &trans    &trans        &trans     &trans    &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         nav_layer {
@@ -57,7 +72,7 @@
                                     &trans    &trans    &trans    &trans        &trans     &trans    &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };    
 };
