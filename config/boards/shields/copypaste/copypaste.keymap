@@ -32,7 +32,7 @@
 // |   TAB   |    Q    |    W    |    E    |    R    |    T    |                        |    Y    |    U    |    I    |    O    |    P    |    -    |
 // |   ESC   |    A    |    S    |    D    |    F    |    G    |                        |    H    |    J    |    K    |    L    |    ;    |    '    |
 // |  SHIFT  |    Z    |    X    |    C    |    V    |    B    |                        |    N    |    M    |    ,    |    .    |    /    | R SHIFT |
-//                               |  L ALT  | LT(SYM) |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R GUI  |
+//                               |  L ALT  |   SYM   |  BKSPC  |   NAV   |    | RETURN  |  SPACE  | R SHIFT |  R GUI  |
             bindings = <
     AC(TAB)     AC(Q)     AC(W)     AC(E)     AC(R)     AC(T)                              AC(Y)     AC(U)     AC(I)     AC(O)     AC(P)     AC(MINUS)
     AC(ESC)     AC(A)     AC(S)     AC(D)     AC(F)     AC(G)                              AC(H)     AC(J)     AC(K)     AC(L)     AC(SEMI)  AC(SQT)
@@ -85,7 +85,7 @@
     &none     &kp PLV_SL &kp PLV_TL &kp PLV_PL &kp PLV_HL &kp PLV_ST                       &kp PLV_ST &kp PLV_FR &kp PLV_PR &kp PLV_LR &kp PLV_TR &kp PLV_DR
     &kp ESC   &kp PLV_SL &kp PLV_KL &kp PLV_WL &kp PLV_RL &kp PLV_ST                       &kp PLV_ST &kp PLV_RR &kp PLV_BR &kp PLV_GR &kp PLV_SR &kp PLV_ZR
    &tog STENO &none      &none      &none      &none      &none                            &none      &none      &none      &none      &none      &none 
-                                    &none   &kp PLV_NM &kp PLV_A &kp PLV_O      &kp PLV_E &kp PLV_U &kp PLV_NM &none
+                                    &none    &kp PLV_A &kp PLV_O &kp PLV_NM       &kp PLV_NM &kp PLV_E &kp PLV_U &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
