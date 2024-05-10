@@ -37,7 +37,7 @@
     AC(TAB)     AC(Q)     AC(W)     AC(E)     AC(R)     AC(T)                              AC(Y)     AC(U)     AC(I)     AC(O)     AC(P)     AC(MINUS)
     AC(ESC)     AC(A)     AC(S)     AC(D)     AC(F)     AC(G)                              AC(H)     AC(J)     AC(K)     AC(L)     AC(SEMI)  AC(SQT)
     &kp LSHIFT  AC(Z)     AC(X)     AC(C)     AC(V)     AC(B)                              AC(N)     AC(M)     AC(COMMA) AC(DOT)   AC(FSLH)  &kp RSHIFT
-                                    &kp LALT  &tog SYM  &kp BSPC &mo NAV        &kp RET    AC(SPACE) &kp RSHFT &kp RALT
+                                    &kp LALT  &mo SYM  &kp BSPC &mo NAV        &kp RET    AC(SPACE) &kp RSHFT &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP                                 &inc_dec_kp C_VOL_UP C_VOL_DN>;
